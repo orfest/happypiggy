@@ -1,0 +1,45 @@
+<shared:TurnIndicator wtkx:id="turnIndicator" orientation="vertical"
+	styles="{horizontalAlignment:'center', verticalAlignment:'center'}"  
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:shared="ru.nsu.ccfit.pm.econ.view.shared"
+	xmlns:shwtkx="ru.nsu.ccfit.pm.econ.view.shared.wtkx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<wtkx:define>
+		<shwtkx:DateValue wtkx:id="time" 
+			shwtkx:ValueListener.valueChanged="updateTime()" />
+		<shwtkx:BooleanValue wtkx:id="turnFinished" val="true"
+			shwtkx:ValueListener.valueChanged="updateTime()" />
+		
+		<shwtkx:IntegerValue wtkx:id="turnNumber" 
+			shwtkx:ValueListener.valueChanged="updateTurn()" />
+		
+		<shwtkx:DoubleValue wtkx:id="moneyAmount" 
+			shwtkx:ValueListener.valueChanged="updateMoney()" />
+		<shwtkx:BooleanValue wtkx:id="moneyVisible" val="false"
+			shwtkx:ValueListener.valueChanged="updateMoney()" />
+	</wtkx:define>
+	
+	<wtkx:script>
+		function updateTime() {
+			timeLabel.text = time.asString;
+			timeLabel.visible = !turnFinished.val;
+		}
+		
+		function updateTurn() {
+			turnLabel.text = turnIndicator.formatter.formatTurn(turnNumber.val);
+		}
+		
+		function updateMoney() {
+			if (moneyVisible.val)
+				moneyLabel.text = turnIndicator.formatter.formatMoney(moneyAmount.val);
+			moneyLabel.visible = moneyVisible.val;
+		}
+	</wtkx:script>
+	
+	<Label wtkx:id="timeLabel" text="00:0" styles="{font:'Arial bold 24', color:'#bb4444'}" />
+	<Label wtkx:id="turnLabel" text="Turn 0" styles="{font:{bold:true, size:14}}" />
+	<Label wtkx:id="moneyLabel" text="0 $" styles="{font:{bold:true, size:14}, color:16}"/>
+</shared:TurnIndicator>

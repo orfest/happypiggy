@@ -1,0 +1,152 @@
+<server:StartSheet wtkx:id="startSheet" title="Start Sheet"
+	WindowStateListener.windowOpened="init()"
+	maximumPreferredWidth="600"
+    xmlns:wtkx="http://pivot.apache.org/wtkx"
+    xmlns="org.apache.pivot.wtk"
+    xmlns:server="ru.nsu.ccfit.pm.econ.view.server"
+    xmlns:shwtkx="ru.nsu.ccfit.pm.econ.view.shared.wtkx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<wtkx:define>
+		<shwtkx:BooleanValue wtkx:id="isClosable" val="false" />
+	</wtkx:define>
+	
+	<wtkx:script>
+		function init() {
+			// sheet initialization code here
+		}
+	</wtkx:script>
+	
+	<sheetStateListeners>
+		<wtkx:script>
+			importPackage(org.apache.pivot.util);
+			function previewSheetClose(sheet, result) {
+				if (isClosable.val == false)
+					return Vote.DENY;
+				return Vote.APPROVE;
+			}
+		</wtkx:script>
+	</sheetStateListeners>
+	
+	<content>
+		<CardPane wtkx:id="stagesCP" styles="{selectionChangeEffect:'horizontal_slide'}">
+		
+		<!-- Name and scenario form -->
+		<TablePane styles="{verticalSpacing:6}">
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+				<TablePane.Row height="-1">
+					<Label text="Создание новой игры"
+						styles="{horizontalAlignment:'center', verticalAlignment:'center', font:{bold:true, size:16}}"
+					/>
+				</TablePane.Row>
+				<TablePane.Row>
+					<Separator heading="Представьтесь, пожалуйста" />
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<!-- Name field -->
+					<Form>
+						<sections>
+							<Form.Section>
+							
+								<TextInput wtkx:id="loginNameTI" 
+									prompt="%s.start.namePrompt" 
+									Form.label="%s.start.name" 
+								/>
+								
+							</Form.Section>
+						</sections>
+					</Form>
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<Separator heading="Выберите файл сценария" />
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<!-- Scenario file selection -->
+					<BoxPane orientation="horizontal">
+					
+						<TextInput wtkx:id="filePathTI" preferredWidth="220" />
+						<PushButton wtkx:id="openFilePB" buttonData="%s.start.openScenario" />
+						
+					</BoxPane>
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					<!-- "Next" button -->
+					<BoxPane styles="{horizontalAlignment:'right', verticalAlignment:'bottom', padding:{top:6}}">
+					
+						<PushButton wtkx:id="startServerPB" buttonData="%s.start.startServer" enabled="false" />
+						
+					</BoxPane>
+				</TablePane.Row>
+			</rows>
+		</TablePane>
+		
+		<!-- Wait for players form -->
+		<TablePane styles="{verticalSpacing:6}">
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+				<TablePane.Row height="-1">
+					<Label text="Ожидание игроков"
+						styles="{horizontalAlignment:'center', verticalAlignment:'center', font:{bold:true, size:16}}"
+					/>
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<Separator heading="Адрес сервера" />
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<BoxPane orientation="vertical">
+					
+						<Form>
+							<sections>
+								<Form.Section>
+									<TextInput wtkx:id="serverIpTI" Form.label="IP адрес" text="0.0.0.0" />
+									<TextInput wtkx:id="serverPortTI" Form.label="Порт" text="1838" />
+								</Form.Section>
+							</sections>
+						</Form>
+						
+						<Label text="(если у студентов возникают проблемы с автоматическим подключением, сообщите им IP и порт, указанные выше)" 
+							styles="{horizontalAlignment:'center', verticalAlignment:'center', wrapText:true}" 
+							preferredWidth="300"   
+						/>
+					</BoxPane>
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<Separator heading="Подключенные игроки" />
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<Border styles="{color:10}">
+						<content>
+						
+							<ScrollPane preferredHeight="126"
+								horizontalScrollBarPolicy="fill_to_capacity"
+								verticalScrollBarPolicy="fill_to_capacity"
+							>
+								<view>
+									<ListView wtkx:id="clientList" 
+										listData="['Ваня', 'Вовочка', 'Петя', 'Three', 'Four', 'Five', 'Six', 'Seven']"
+									/>
+								</view>
+							</ScrollPane>
+							
+						</content>
+					</Border>
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					<!-- "Start game" button -->
+					<BoxPane styles="{horizontalAlignment:'right', verticalAlignment:'bottom', padding:{top:6}}">
+					
+						<PushButton wtkx:id="startGamePB" buttonData="%s.start.startGame" />
+						
+					</BoxPane>
+				</TablePane.Row>
+			</rows>
+		</TablePane>
+		
+		</CardPane>
+	</content>
+</server:StartSheet>

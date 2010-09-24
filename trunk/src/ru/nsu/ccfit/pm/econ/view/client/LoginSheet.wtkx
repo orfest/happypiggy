@@ -1,0 +1,244 @@
+<client:LoginSheet wtkx:id="loginSheet" title="Login Sheet"
+	WindowStateListener.windowOpened="init()"
+	maximumPreferredWidth="600"
+    xmlns:wtkx="http://pivot.apache.org/wtkx"
+    xmlns="org.apache.pivot.wtk"
+    xmlns:client="ru.nsu.ccfit.pm.econ.view.client"
+    xmlns:shwtkx="ru.nsu.ccfit.pm.econ.view.shared.wtkx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<wtkx:define>
+		<ButtonGroup wtkx:id="serverChooseBG">
+			<buttonGroupListeners>
+				<wtkx:script>
+					function selectionChanged(bGroup, prevSelButton) {
+						switch (bGroup.selection) {
+							case serverListRB:
+								enableServerListControls(true);
+								enableServerManualControls(false);
+								break;
+							case serverEnterRB:
+								enableServerListControls(false);
+								enableServerManualControls(true);
+								break;
+						}
+					}
+				</wtkx:script>
+			</buttonGroupListeners>
+		</ButtonGroup>
+		
+		<shwtkx:BooleanValue wtkx:id="isClosable" val="false" />
+	</wtkx:define>
+	
+	<wtkx:script>
+		function init() {
+			serverChooseBG.selection = serverListRB;
+			setServersFound(false);
+		}
+		
+		function setServersFound(found) {
+			if (found) {
+				serverListAI.active = false;
+				serverListCP.selectedIndex = 1;
+			} else {
+				serverListAI.active = true;
+				serverListCP.selectedIndex = 0;
+			}
+		}
+		
+		function enableServerListControls(enable) {
+			serverList.enabled = enable;
+			if (serverList.getListData().length == 0) {
+				setServersFound(!enable);
+			}
+		}
+		
+		function enableServerManualControls(enable) {
+			serverEnterForm.enabled = enable;
+		}
+	</wtkx:script>
+	
+	<sheetStateListeners>
+		<wtkx:script>
+			importPackage(org.apache.pivot.util);
+			function previewSheetClose(sheet, result) {
+				if (isClosable.val == false)
+					return Vote.DENY;
+				return Vote.APPROVE;
+			}
+		</wtkx:script>
+	</sheetStateListeners>
+
+	<content>
+		<CardPane wtkx:id="loginStateCP" styles="{selectionChangeEffect:'horizontal_slide'}">
+		
+		<!-- Main login form -->
+		<TablePane styles="{verticalSpacing:6}">
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+				<TablePane.Row height="1*">
+					<Label text="%c.login.welcome"
+						styles="{horizontalAlignment:'center', verticalAlignment:'center', wrapText:true}"
+						preferredWidth="300" minimumPreferredHeight="60"  
+					/>
+				</TablePane.Row>
+				<TablePane.Row>
+					<Separator heading="%c.login.introduce" />
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<!-- Name & Group fields -->
+					<Form>
+						<sections>
+							<Form.Section>
+								<TextInput wtkx:id="loginNameTI" 
+									prompt="%c.login.namePrompt" 
+									Form.label="%c.login.name" 
+								/>
+								<TextInput wtkx:id="loginGroupTI" 
+									prompt="%c.login.groupPrompt" 
+									Form.label="%c.login.group"
+								/>
+							</Form.Section>
+						</sections>
+					</Form>
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<Separator heading="%c.login.selectServer" />
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<!-- Server selection via list -->
+					<BoxPane orientation="vertical" styles="{fill:true}">
+						<RadioButton wtkx:id="serverListRB" 
+							buttonData="%c.login.serverFromList" 
+							buttonGroup="$serverChooseBG"
+						/>
+						<Border styles="{color:10}">
+							<content>
+								<CardPane wtkx:id="serverListCP" styles="{selectionChangeEffect:'zoom'}">
+									<BoxPane 
+										styles="{horizontalAlignment:'center', verticalAlignment:'center'}"
+										orientation="vertical"
+									>
+										<ActivityIndicator wtkx:id="serverListAI"
+											preferredWidth="48" preferredHeight="48" 
+											styles="{color:16}"
+										/>
+										<Label text="%c.login.searching" />
+									</BoxPane>
+									<ScrollPane preferredHeight="126"
+										horizontalScrollBarPolicy="fill_to_capacity"
+										verticalScrollBarPolicy="fill_to_capacity"
+									>
+										<view>
+											<ListView wtkx:id="serverList" 
+												listData="['Game Server #1 - 10.3.61.99:3025', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven']"
+												ListViewListener.listDataChanged=
+													"setServersFound(serverList.getListData().length > 0)"
+											/>
+										</view>
+									</ScrollPane>
+								</CardPane>
+							</content>
+						</Border>
+					</BoxPane>
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<!-- Manual server selection -->
+					<BoxPane orientation="vertical" styles="{padding:{top:6}}">
+						<RadioButton wtkx:id="serverEnterRB" 
+							buttonData="%c.login.serverManually" 
+							buttonGroup="$serverChooseBG"
+						/>
+						<Form wtkx:id="serverEnterForm">
+							<sections>
+								<Form.Section>
+									<BoxPane wtkx:id="serverEnterBP" Form.label="%c.login.serverAddress">
+										<TextInput wtkx:id="serverIpTI" 
+											prompt="%c.login.ipAddress" 
+											textSize="12"
+										/>
+										<TextInput wtkx:id="serverPortTI" 
+											prompt="%c.login.port" 
+											textSize="6"
+										/>
+									</BoxPane>
+								</Form.Section>
+							</sections>
+						</Form>
+					</BoxPane>
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					<!-- "Next" button -->
+					<BoxPane styles="{horizontalAlignment:'right'}">
+						<PushButton wtkx:id="connectPB" buttonData="%c.login.connect">
+							<!-- Actions are defined in LoginSheet.java -->
+						</PushButton>
+					</BoxPane>
+				</TablePane.Row>
+			</rows>
+		</TablePane>
+		
+		<!-- Awaiting connection screen -->
+		<BoxPane orientation="vertical" styles="{horizontalAlignment:'center', verticalAlignment:'center'}">
+			<ActivityIndicator wtkx:id="waitConnectionAI"
+				preferredWidth="48" preferredHeight="48" 
+				styles="{color:0}"
+			/>
+			<Label text="%c.login.connecting" />
+		</BoxPane>
+		
+		<!-- Awaiting players screen -->
+		<TablePane>
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+				<TablePane.Row height="1*">
+					<BoxPane orientation="vertical" 
+						styles="{horizontalAlignment:'center', verticalAlignment:'center'}"
+					>
+						<ActivityIndicator wtkx:id="waitPlayersAI"
+							preferredWidth="48" preferredHeight="48" 
+							styles="{color:16}"
+						/>
+						<Label text="%c.login.waitingPlayers" />
+					</BoxPane>
+				</TablePane.Row>
+				<TablePane.Row>
+					<BoxPane styles="{horizontalAlignment:'left'}">
+						<PushButton wtkx:id="disconnectPB" buttonData="%c.login.disconnect">
+							<!-- Actions are defined in LoginSheet.java -->
+						</PushButton>
+					</BoxPane>
+				</TablePane.Row>
+			</rows>
+		</TablePane>
+		
+			<cardPaneListeners>
+				<wtkx:script>
+					// TODO implement instead previewSelectedIndexChange() 
+					// and selectedIndexChangeVetoed() to provide smoother
+					// user experience.
+					function selectedIndexChanged(cardPane, prevIndex) {
+						waitConnectionAI.active = false;
+						waitPlayersAI.active = false;
+						
+						switch (cardPane.selectedIndex) {
+							case 0:
+								break;
+							case 1:
+								waitConnectionAI.active = true;
+								break;
+							case 2:
+								waitPlayersAI.active = true;
+								break;
+						} 
+					}
+				</wtkx:script>
+			</cardPaneListeners>
+		
+		</CardPane>
+	</content>
+</client:LoginSheet>

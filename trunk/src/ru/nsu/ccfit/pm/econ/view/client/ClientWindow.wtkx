@@ -1,0 +1,53 @@
+<client:ClientWindow wtkx:id="window" title="%c.windowTitle" maximized="true"
+	preferredWidth="800" preferredHeight="600"
+	WindowStateListener.windowOpened="init()"  
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:client="ru.nsu.ccfit.pm.econ.view.client"
+	xmlns:shared="ru.nsu.ccfit.pm.econ.view.shared"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<wtkx:define>
+		<wtkx:include wtkx:id="loginSheet" src="LoginSheet.wtkx" />
+	</wtkx:define>
+	
+	<wtkx:script>
+		function init() {
+			loginSheet.open(window);
+		}
+	</wtkx:script>
+
+	<content>
+		<SplitPane orientation="vertical" splitRatio="0.2">
+			<left>
+				<wtkx:include wtkx:id="header" src="Header.wtkx" />
+			</left>
+			<right>
+				<Border styles="{padding:0, color:10}">
+					<content>
+						<TabPane wtkx:id="tabPane" styles="{tabOrientation:'horizontal'}">
+							<tabs>
+								
+								<wtkx:include TabPane.label="О компаниях" wtkx:id="companyInfoScreen" src="../shared/CompanyInfoScreen.wtkx" />
+								
+								<wtkx:include TabPane.label="Новости" wtkx:id="newsScreen" src="../shared/NewsScreen.wtkx" />
+								
+								<wtkx:include TabPane.label="Купить" wtkx:id="buyScreen" src="../shared/BuyScreen.wtkx" />
+								
+								<wtkx:include TabPane.label="Продать" wtkx:id="sellScreen" src="../shared/SellScreen.wtkx" />
+								
+								<wtkx:include TabPane.label="Мои финансы" wtkx:id="financesScreen" src="FinancesScreen.wtkx" />
+								
+								<wtkx:include TabPane.label="Рейтинг" wtkx:id="ratingScreen" src="../shared/RatingScreen.wtkx" />
+								
+								<wtkx:include TabPane.label="Чат" wtkx:id="chatScreen" src="../shared/ChatScreen.wtkx" />
+
+							</tabs>
+						</TabPane>
+					</content>
+				</Border>
+			</right>
+		</SplitPane>
+	</content>
+</client:ClientWindow>

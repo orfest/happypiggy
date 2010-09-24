@@ -1,0 +1,281 @@
+package protos;
+
+option java_package =  "ru.nsu.ccfit.pm.econ.net.protos";
+option java_outer_classname = "AllGameEventsProtos";
+
+// required by GameEvent, TransactionProto
+message GameTimeProto {
+	required int32 turnNumber = 1;
+	required bool turnFinished = 2;
+	required string time = 3;
+}
+
+//required by BankRequestEvent, BankTransactionEvent
+//enum BankTransactionTypeProto{
+//	LOAN = 0;
+//	DEPOSIT = 1;
+//	LOAN_REPAY = 2;
+//	DEPOSIT_REPAY = 3;
+//}
+
+// required by BankTransactionEvent
+message BankTransactionProto {
+	required int32 type = 1;
+	required double repayValue = 2;
+	required int32 repayTurn = 3;
+	required int32 issueTurn = 4;
+	required double interestRate = 5;
+	required double initialValue = 6;
+	required int64 clientId = 7;
+	required int64 bankId = 8;  	
+}
+
+// required by BuyOfferProto, CompanyProto, TransactionProto, TransferSharesEvent
+message ShareHoldingProto {
+	required int64 ownerId = 1;
+	required int64 companyId = 2;
+	required int32 amount = 3;
+}
+
+// required by BuyOffersChangeEvent, BuyRequestEvent
+message BuyOfferProto{
+	required double suggestedValue = 1;
+	required ShareHoldingProto shareHolding = 2;
+	required int64 sellerId = 3;
+}
+
+// required by TextOnlyCompanyMessageProto
+//enum CompanyMessageTypeProto {
+//	RUMOR = 0;
+//	OFFICIAL = 1;
+//}
+
+// required by CompanyMessageEvent, CompanyProto
+message TextOnlyCompanyMessageProto{
+	required int32 virtualType = 1;
+	required int64 id = 2;
+	required int32 type = 3;
+	required int64 companyId = 4;
+	required string title = 5;
+	required string message = 6;
+	required GameTimeProto publishTime = 7;
+	optional bool published = 8;	
+	optional double coefficientK = 9;
+	optional double coefficientC = 10;
+	repeated PlayerProto receivers = 11;
+}
+
+// required by DividendVotingEvent
+message VoteSetProto {
+	required int32 numberOfVotes = 1;
+	required double dpr = 2;
+}
+
+// required by PlayerProto
+message PersonDescriptionProto {
+	required string name = 1;
+	optional string group = 2;
+}
+
+// required by PlayerProto
+message LoanProto {
+	required int32 type = 1;
+	required int64 bankId = 2;
+	required int64 clientId = 3;
+	required double initialValue = 4;
+	required double interestRate = 5;
+	required int32 issueTurn = 6;
+	required int32 repayTurn = 7;
+	required double repayValue = 8;
+}
+
+// required by PlayerProto
+message DepositProto {
+	required int32 type = 1;
+	required int64 bankId = 2;
+	required int64 clientId = 3;
+	required double initialValue = 4;
+	required double interestRate = 5;
+	required int32 issueTurn = 6;
+	required int32 repayTurn = 7;
+	required double repayValue = 8;
+}
+
+// required by CompanyMessageProto
+message PlayerProto {
+	required int32 virtualType = 1;
+	required PersonDescriptionProto unmodifiablePersonDescription = 2;
+	required int64 id = 3;
+	optional double cash = 4;
+	repeated LoanProto unmodifiableLoanList = 5;
+	repeated DepositProto unmodifiableDepositList = 6;
+	optional double loanInterestRate = 7;
+	repeated LoanProto unmodifiableTakenLoansList = 8; 
+}
+
+// required by ScenarioProto
+message CompanyProto {
+	optional int64 id = 1;
+	optional string name = 2;
+	optional string companyType = 3;
+	optional string description = 4;
+	optional int32 totalSharesAmount = 5;
+	optional double shareMarketValue = 6;
+	optional double expectedProfit = 7;
+	optional double dividendPayoutRatio = 8;
+	optional double profitBeforeGameStart = 9;
+	optional double profitForPreviousPeriod = 10;
+	optional int32 accountingPeriod = 11;
+	optional double teacherSharePart = 12;
+	repeated TextOnlyCompanyMessageProto publishedMessages = 13;
+	repeated TextOnlyCompanyMessageProto allMessages = 14;
+	repeated ShareHoldingProto shareHoldings = 15;
+}
+
+// required by GameSnapshotEvent
+message ScenarioProto {
+	repeated CompanyProto companies = 1;
+	required string name = 2;
+	required string description = 3;
+	required string author = 4;
+	required string fullCurrencyName = 5;
+	required string shortCurrencyName = 6;
+	required int32 turnLengthMinutes= 7;
+	required double startingCashValue = 8;
+}
+
+// hz
+message ScenarioPropertiesProto {
+	required string name = 1;
+	required string description = 2;
+	required string author = 3;
+	required string fullCurrencyName = 4;
+	required string shortCurrencyName = 5;
+	required int32 turnLengthMinutes= 6;
+	required double startingCashValue = 7;
+}
+
+// required by ShareAllocationRequestEvent
+message ShareAllocationRequestProto{
+	optional int64 companyId = 1;
+	optional int32 requestedShareAmount = 2;
+}
+
+// required by TransactionEvent
+message TransactionEvent {
+	required GameTimeProto time = 1;
+	required ShareHoldingProto shareHolding = 2;
+	required int64 selledId = 3;
+	required int64 buyerId = 4;
+	required double value = 5;
+}
+
+// required by TurnEndEvent
+message PlayerRatingValueProto {
+	required int64 playerId = 1;
+	required double ratingValue = 2;
+}
+
+// required by TransactionEvent
+message TransactionProto {
+	required int64 buyerId = 1;
+	required int64 sellerId = 2;
+	required ShareHoldingProto shareHolding = 3;
+	required GameTimeProto time = 4;
+	required double value = 5;
+}
+
+// entry point, also required by GameSnapshotEvent
+message GameEventProto {
+
+	required int32 virtualType = 1;
+
+	// GameEvent
+	required GameTimeProto eventTime = 2;
+	required bool broadcast = 3;
+	required int64 senderId = 4;
+	repeated int64 receiverIds = 5;
+
+	// AddCashEvent
+	optional double addedCash = 6;
+	optional string message = 7; // used by CharMessageEvent, TransferSharesEvent
+
+	// BankPercentEvent
+	optional double loanInterestRate = 8;
+	optional double depositInterestRate = 9;
+
+	// BankRequestEvent
+	optional int32 transactionType = 10; //used by BankTransactionEvent
+	optional double initialValue = 11;
+	optional int32 period = 12;
+
+	// BankTransactionEvent
+	//optional BankTransactionTypeProto transactionType;	// use #10
+	optional BankTransactionProto bankTransaction = 13;
+
+	// BuyOffersChangeEvent
+	repeated BuyOfferProto unmodifiableBuyOffers = 14;
+	optional int64 companyId = 15; // used by DividendPayoutEvent, DividendVoteEvent, DividendVotingProposalEvent
+	optional int64 sellerId = 16;
+	optional double newStockIndex = 17;
+	optional double newShareMarketValue = 18;
+
+	// BuyRequestEvent
+	optional BuyOfferProto offerOfInterest = 19;
+	optional int64 buyerId = 20;
+
+	// ChatMessageEvent
+	// string message use #7
+
+	// CompanyMessageEvent
+	optional TextOnlyCompanyMessageProto companyMessage = 21;
+
+	// DividendPayoutEvent
+	//optional long companyId; // use #15 
+	optional double dividendPayoutValue = 22;
+	optional double companyProfit = 23; // used by DividendVotingProposalEvent
+	optional double dividendPayoutRatio = 24;
+
+	// DividendVoteEvent
+	//optional long companyId;	// use #15
+	optional double selectedDPR = 25;
+
+	// DividendVotingEvent
+	repeated VoteSetProto votes = 26;
+	optional double resultingDPR = 27;
+
+	// DividendVotingProposalEvent
+	// optional long companyId;			//use #15
+	//optional double companyProfit;	//use #23
+	repeated double possibleDRPs = 28;
+
+	// GameSnapshotEvent
+	optional ScenarioProto scenario = 29;
+	repeated PlayerProto players = 30;
+	optional double stockIndex = 31;
+	repeated GameEventProto chatMessages = 32;
+	repeated BuyOfferProto allBuyOffers = 33;
+
+	// ShareAllocationRequestEvent
+	repeated ShareAllocationRequestProto requests = 34;
+
+	// TransactionEvent
+	optional TransactionProto transaction = 35;
+
+	// TransferSharesEvent
+	optional ShareHoldingProto transferredShareHolding = 36;
+	//optional string message; // use #7
+
+	//TurnEndEvent
+	repeated PlayerRatingValueProto ratingList = 37;
+
+	//TurnStartEvent
+	optional int32 newTurnNumber = 38;
+	
+	//KickBanEvent
+	optional string reason = 39;
+	optional bool banned = 40;
+}
+
+
+

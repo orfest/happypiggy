@@ -1,0 +1,55 @@
+<shared:RatingScreen wtkx:id="ratingScreen" 
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:shared="ru.nsu.ccfit.pm.econ.view.shared"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<rows>
+	<GridPane.Row>
+		<TablePane styles="{verticalSpacing:4}">
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+				<TablePane.Row height="-1">
+					
+					<Label text="Рейтинг игроков по суммарному количеству активов:" />
+					
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					
+					<Border styles="{color:10}">
+						<content>
+							<ScrollPane 
+								horizontalScrollBarPolicy="fill" 
+								verticalScrollBarPolicy="fill_to_capacity"
+							>
+								<view>
+									<TableView wtkx:id="ratingTable">
+										<columns>
+											<TableView.Column name="place" headerData="Место" width="40" />
+											<TableView.Column name="name" headerData="Игрок" width="1*" />
+										</columns>
+										<tableData xmlns="org.apache.pivot.collections">
+											<ArrayList>
+												<HashMap place="1" name="Иван" />
+												<HashMap place="2" name="Петя" />
+												<HashMap place="3" name="Вовочка" />
+											</ArrayList>
+										</tableData>
+									</TableView>
+								</view>
+								<columnHeader>
+									<TableViewHeader tableView="$ratingTable" />
+								</columnHeader>
+							</ScrollPane>
+						</content>
+					</Border>
+					
+				</TablePane.Row>
+			</rows>
+		</TablePane>
+	</GridPane.Row>
+	</rows>
+</shared:RatingScreen>

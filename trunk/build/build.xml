@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Piggy" default="all" basedir="..">
+	
+	<description>
+		Builds entire project.
+	</description>
+
+	<!-- Important locations -->
+	<property name="build.dir" value="build" />
+	<property name="src.dir" value="src" />
+	<property name="compile.dir" value="tmp" />
+	<property name="result.dir" value="." />
+	
+	<!-- Important names -->
+	<property name="protos.buildfile" value="build_protos.xml" />
+	<property name="client.jar.name" value="client.jar" />
+	<property name="server.jar.name" value="server.jar" />
+	
+	<!-- Classpath entries -->
+	<property name="junit.lib.path" value="lib/junit-4/junit.jar" />
+	<property name="gagagent.lib.path" value="lib/gag/gag-agent.jar" />
+	<property name="gag.lib.path" value="lib/gag/gag.jar" />
+	<property name="guice.libs.path" value="lib/guice/aopalliance.jar lib/guice/guice-2.0.jar" />
+	<property name="jfreechart.libs.path" value="lib/jfreechart/jcommon-1.0.16.jar lib/jfreechart/jfreechart-1.0.13.jar lib/jfreechart/pivot-jfree-1.4.jar" />
+	<property name="jsr305.lib.path" value="lib/jsr305/jsr305.jar" />
+	<property name="pivot.libs.path" value="lib/pivot/pivot-charts-1.4.jar lib/pivot/pivot-core-1.4.jar lib/pivot/pivot-tools-1.4.jar lib/pivot/pivot-wtk-1.4.jar lib/pivot/pivot-wtk-terra-1.4.jar" />
+	<property name="protobuf.lib.path" value="lib/protobuf/protobuf.jar" />
+	<property name="logging.libs.path" value="lib/slf4j/logback-classic-0.9.21.jar lib/slf4j/logback-core-0.9.21.jar lib/slf4j/slf4j-api-1.6.0.jar" />
+	<property name="classpath" value="${gag.lib.path} ${guice.libs.path} ${jfreechart.libs.path} ${jsr305.lib.path} ${pivot.libs.path} ${protobuf.lib.path} ${logging.libs.path}" />
+	
+	<!-- Properties defined in these files will override properties in this file -->
+	<property file="${user.home}/build.properties" />
+	<property file="${build.dir}/build.properties" />
+	<property name="protoc.path" value="protoc" />
+	
+	<!-- Target section -->
+	<target name="build-protos" description="Build HappyPiggy Proto sources">
+		<ant antfile="${build.dir}/${protos.buildfile}" />
+	</target>
+	
+	<target name="compile" description="Compile HappyPiggy Project" depends="build-protos">
+		<mkdir dir="${compile.dir}"/>
+		<javac 	srcdir="${src.dir}" 
+				destdir="${compile.dir}">
+			<classpath>
+			      <fileset dir="lib">
+			        <include name="**/*.jar"/>
+			      </fileset>
+			</classpath>
+		</javac>
+		<copy todir="${compile.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.json" />
+				<include name="**/*.wtkx" />
+				<include name="**/*.png" />
+				<include name="**/*.gif" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="dist-client" description="Make client jar" depends="compile">
+		<mkdir dir="${result.dir}"/>
+		<jar jarfile="${result.dir}/${client.jar.name}" basedir="${compile.dir}">
+		    <manifest>
+                <attribute name="Main-Class" value="ru.nsu.ccfit.pm.econ.view.client.ClientApp"/>
+				<attribute name="Class-Path" value="${classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="dist-server" description="Make server jar" depends="compile">
+		<mkdir dir="${result.dir}"/>
+		<jar jarfile="${result.dir}/${server.jar.name}" basedir="${compile.dir}">
+		    <manifest>
+                <attribute name="Main-Class" value="ru.nsu.ccfit.pm.econ.view.server.ServerApp"/>
+				<attribute name="Class-Path" value="${classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="clean" description="Remove intermediate build products">
+		<delete dir="${compile.dir}" />
+	</target>
+	
+	<target name="clean-jars" description="Remove built jar files">
+		<delete file="${result.dir}/${client.jar.name}" />
+		<delete file="${result.dir}/${server.jar.name}" />
+	</target>
+	
+	<target name="clean-all" description="Remove ALL generated artifacts" depends="clean, clean-jars">
+		<ant antfile="${build.dir}/${protos.buildfile}" target="clean" />
+	</target>
+	
+	<target name="all" description="Build entire project: client and server" 
+		depends="clean-jars, compile, dist-client, dist-server, clean" 
+	/>
+
+</project>

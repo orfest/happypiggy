@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/guice/aopalliance.jar"/>
+	<classpathentry kind="lib" path="lib/guice/guice-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/gag/gag.jar"/>
+	<classpathentry kind="lib" path="lib/jsr305/jsr305.jar"/>
+	<classpathentry kind="lib" path="lib/protobuf/protobuf.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j/logback-classic-0.9.21.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j/logback-core-0.9.21.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j/slf4j-api-1.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/pivot/pivot-core-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/pivot/pivot-tools-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/pivot/pivot-wtk-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/pivot/pivot-wtk-terra-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart/jcommon-1.0.16.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart/jfreechart-1.0.13.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart/pivot-jfree-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/pivot/pivot-charts-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4/junit.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

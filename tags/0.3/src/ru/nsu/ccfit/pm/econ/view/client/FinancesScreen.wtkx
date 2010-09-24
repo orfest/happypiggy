@@ -1,0 +1,110 @@
+<client:FinancesScreen wtkx:id="financesScreen" 
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:client="ru.nsu.ccfit.pm.econ.view.client"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<rows>
+	<GridPane.Row>
+		<TablePane styles="{verticalSpacing:4}">
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+				<TablePane.Row height="-1">
+				
+					<Label text="Расходы и доходы:" styles="{font:{bold:true}}" />
+					
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					
+					<Border styles="{color:10}">
+						<content>
+							<ScrollPane 
+								horizontalScrollBarPolicy="fill_to_capacity" 
+								verticalScrollBarPolicy="fill_to_capacity"
+							>
+								<view>
+									<TableView wtkx:id="balanceTable">
+										<columns>
+											<TableView.Column name="category" headerData="Расход / доход" width="200" />
+											<TableView.Column name="turn1" headerData="Ход 1" width="80" />
+											<TableView.Column name="turn2" headerData="Ход 2" width="80" />
+											<TableView.Column name="turn3" headerData="Ход 3" width="80" />
+										</columns>
+										<tableData xmlns:col="org.apache.pivot.collections" xmlns="ru.nsu.ccfit.pm.econ.view.client">
+											<col:ArrayList>
+												<FinancesScreenTurnRow wtkx:id="moneyOnTurnStartTR"	category="Денег на начало хода"	turn1="+50"		turn2="+210"	turn3="+30" />
+												<FinancesScreenTurnRow wtkx:id="takenLoansTR"		category="Взятые кредиты"		turn1="+180"	turn2="0"		turn3="0" />
+												<FinancesScreenTurnRow wtkx:id="takenDepositsTR"	category="Сделанные вклады"		turn1="0"		turn2="-15"		turn3="0" />
+												<FinancesScreenTurnRow wtkx:id="boughtSharesTR"		category="Покупка акций"			turn1="-20"		turn2="-190"	turn3="0" />
+												<FinancesScreenTurnRow wtkx:id="soldSharesTR"		category="Продажа акций"			turn1="0"		turn2="+10"		turn3="+5" />
+												<FinancesScreenTurnRow wtkx:id="dividendsTR"		category="Дивиденды"				turn1="0"		turn2="+15"		turn3="0" />
+											</col:ArrayList>
+										</tableData>
+									</TableView>
+								</view>
+								<columnHeader>
+									<TableViewHeader tableView="$balanceTable" />
+								</columnHeader>
+							</ScrollPane>
+						</content>
+					</Border>
+					
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+				
+					<Label text="Вклады и кредиты:" styles="{font:{bold:true}}" />
+					
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					
+					<Border styles="{color:10}">
+						<content>
+							<ScrollPane 
+								horizontalScrollBarPolicy="fill_to_capacity" 
+								verticalScrollBarPolicy="fill_to_capacity"
+							>
+								<view>
+									<TableView wtkx:id="transactionTable">
+										<columns>
+											<TableView.Column name="category" headerData="Вклады / кредиты" width="200" />
+											<TableView.Column name="turn3" headerData="Ход 3" width="80" />
+											<TableView.Column name="turn4" headerData="Ход 4" width="80" />
+											<TableView.Column name="turn5" headerData="Ход 5" width="80" />
+											<TableView.Column name="turn6" headerData="Ход 6" width="80" />
+											<TableView.Column name="turn7" headerData="Ход 7" width="80" />
+											<TableView.Column name="turn8" headerData="Ход 8" width="80" />
+											<TableView.Column name="turn9" headerData="Ход 9" width="80" />
+											<TableView.Column name="turn10" headerData="Ход 10" width="80" />
+										</columns>
+										<tableData xmlns:col="org.apache.pivot.collections" xmlns="ru.nsu.ccfit.pm.econ.view.client">
+											<col:ArrayList>
+												<FinancesScreenTurnRow wtkx:id="paymentsOnLoansTR"		category="Сумма выплат по кредитам"	turn3="0" turn4="0" turn5="0" turn6="0" turn7="-200" turn8="0" turn9="0" turn10="0" />
+												<FinancesScreenTurnRow wtkx:id="paymentsOnDepositsTR"	category="Прибыль по вкладам"		turn3="0" turn4="0" turn5="0" turn6="0" turn7="0" turn8="0" turn9="0" turn10="+20" />
+											</col:ArrayList>
+										</tableData>
+									</TableView>
+								</view>
+								<columnHeader>
+									<TableViewHeader tableView="$transactionTable" />
+								</columnHeader>
+							</ScrollPane>
+						</content>
+					</Border>
+					
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					
+					<BoxPane>
+						<Label text="Наличных денег:" styles="{font:{bold:true}}" />
+						<Label wtkx:id="moneyLabel" text="35" />
+					</BoxPane>
+					
+				</TablePane.Row>
+			</rows>
+		</TablePane>
+	</GridPane.Row>
+	</rows>
+</client:FinancesScreen>

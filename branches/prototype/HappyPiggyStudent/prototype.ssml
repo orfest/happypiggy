@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <comp_list>
+    <name>Компания 1</name>
+    <company_type>Банковские услуги</company_type>
+    <description>Описание компании1</description>
+    <total_share_number>40</total_share_number>
+    <share_market_value>10</share_market_value>
+    <news>
+      <id>0</id>
+      <type>OfficialInfo</type>
+	  <title>Пример новости</title>
+      <text>Пример описания официальной новости</text>
+      <k_mod>1</k_mod>
+      <c_mod>10</c_mod>
+    </news>
+    <news>
+      <id>1</id>
+      <type>Rumor</type>
+	  <title>Пример слуха</title>
+      <text>Пример описания слуха</text>
+      <k_mod>1</k_mod>
+      <c_mod>-1</c_mod>
+    </news>
+    <news>
+      <id>2</id>
+      <type>OfficialInfo</type>
+ 	  <title>Ещё одна новость</title>
+      <text>Ещё официальная новость, отрицательная</text>
+      <k_mod>1</k_mod>
+      <c_mod>-4</c_mod>
+    </news>
+    <news>
+      <id>3</id>
+      <type>Rumor</type>
+      <text>Ещё слух</text>
+	  <title>Слух</title>
+      <k_mod>1</k_mod>
+      <c_mod>1</c_mod>
+    </news>
+    <news>
+      <id>4</id>
+      <type>OfficialInfo</type>
+	  <title>Ещё одна нейтральная новость</title>
+      <text>Ещё нейтральная новость</text>
+      <k_mod>1</k_mod>
+      <c_mod>0</c_mod>
+    </news>
+    <news>
+      <id>5</id>
+      <type>Rumor</type>
+	  <title>Новый слух</title>
+      <text>Положительный слух</text>
+      <k_mod>1.05</k_mod>
+      <c_mod>1</c_mod>
+    </news>
+    <expected_profit>400</expected_profit>
+    <dividend_payout_ratio>0.8</dividend_payout_ratio>
+    <profit_before_game_start>400</profit_before_game_start>
+  </comp_list>
+  <comp_list>
+    <name>Компания 2</name>
+    <company_type>Перевозки</company_type>
+    <description>Описание компании2</description>
+    <total_share_number>90</total_share_number>
+    <share_market_value>5</share_market_value>
+    <news>
+      <id>6</id>
+      <title>Просто новость</title>
+	  <type>OfficialInfo</type>
+	  
+      <text>[2] Пример описания официальной новости</text>
+      <k_mod>1</k_mod>
+      <c_mod>10</c_mod>
+    </news>
+    <news>
+      <id>7</id>
+      <type>Rumor</type>
+	  <title>Новый слух</title>
+      <text>[2] Пример описания слуха</text>
+      <k_mod>1</k_mod>
+      <c_mod>-1</c_mod>
+    </news>
+    <news>
+      <id>8</id>
+      <type>OfficialInfo</type>
+	  <title>Новая новость</title>
+      <text>[2] Ещё официальная новость, отрицательная</text>
+      <k_mod>1</k_mod>
+      <c_mod>-4</c_mod>
+    </news>
+    <news>
+      <id>9</id>
+      <type>Rumor</type>
+	  <title>Новый слух</title>
+      <text>[2] Ещё слух</text>
+      <k_mod>1</k_mod>
+      <c_mod>1</c_mod>
+    </news>
+    <news>
+      <id>10</id>
+      <type>OfficialInfo</type>
+	  <title>Нейтральная новость</title>
+      <text>[2] Ещё нейтральная новость</text>
+      <k_mod>1</k_mod>
+      <c_mod>0</c_mod>
+    </news>
+    <news>
+      <id>11</id>
+      <type>Rumor</type>
+	  <title>Новый слух</title>
+      <text>[2] Положительный слух</text>
+      <k_mod>1.05</k_mod>
+      <c_mod>1</c_mod>
+    </news>
+    <expected_profit>450</expected_profit>
+    <dividend_payout_ratio>0.2</dividend_payout_ratio>
+    <profit_before_game_start>450</profit_before_game_start>
+  </comp_list>
+</scenario>

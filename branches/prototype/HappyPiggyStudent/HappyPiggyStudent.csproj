@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{79B20C66-6320-47F8-986A-715B7925BCC7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HappyPiggyStudent</RootNamespace>
+    <AssemblyName>HappyPiggyStudent</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\IGameController.cs" />
+    <Compile Include="Controller\IServerFinder.cs" />
+    <Compile Include="Misc.cs" />
+    <Compile Include="Model\Scenario.cs" />
+    <Compile Include="RTSindex.cs" />
+    <Compile Include="UI\NewsDetailed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewsDetailed.Designer.cs">
+      <DependentUpon>NewsDetailed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StudentMainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\StudentMainWindow.Designer.cs">
+      <DependentUpon>StudentMainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LoginWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LoginWindow.Designer.cs">
+      <DependentUpon>LoginWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Bank.cs" />
+    <Compile Include="Model\BuyOffer.cs" />
+    <Compile Include="Model\Company.cs" />
+    <Compile Include="Model\CompanyMessage.cs" />
+    <Compile Include="Model\Deposit.cs" />
+    <Compile Include="Model\DivVoting.cs" />
+    <Compile Include="Model\GameDocument.cs" />
+    <Compile Include="Model\GameModel.cs" />
+    <Compile Include="Model\History.cs" />
+    <Compile Include="Model\HistoryElement.cs" />
+    <Compile Include="Model\Loan.cs" />
+    <Compile Include="Model\LoanToBank.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\PlayerBase.cs" />
+    <Compile Include="Model\Share.cs" />
+    <Compile Include="Model\StockExchange.cs" />
+    <Compile Include="Model\StudentDescription.cs" />
+    <Compile Include="Model\Teacher.cs" />
+    <Compile Include="Model\TimeInfo.cs" />
+    <Compile Include="Model\Transaction.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\NewsDetailed.resx">
+      <DependentUpon>NewsDetailed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StudentMainWindow.resx">
+      <DependentUpon>StudentMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LoginWindow.resx">
+      <DependentUpon>LoginWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piggy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piggy1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piggy_tr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\news_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MoneySection_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stats_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\news_small_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

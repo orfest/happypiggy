@@ -1,0 +1,21 @@
+<shared:IndexChart wtkx:id="indexChart" preferredWidth="50" preferredHeight="50"
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:shared="ru.nsu.ccfit.pm.econ.view.shared"
+	xmlns:collections="org.apache.pivot.collections"
+	xmlns:charts="org.apache.pivot.charts"
+	xmlns:chartsContent="org.apache.pivot.charts.content"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<chartData>
+		<collections:ArrayList>
+			<chartsContent:ValueSeries name="Series name">
+				<chartsContent:Point x="1.0" y="5.0"/>
+				<chartsContent:Point x="2.0" y="7.0"/>
+				<chartsContent:Point x="3.0" y="6.0"/>
+				<chartsContent:Point x="4.0" y="8.0"/>
+			</chartsContent:ValueSeries>
+		</collections:ArrayList>
+	</chartData>
+</shared:IndexChart>

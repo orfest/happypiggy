@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Piggy_protos" default="all" basedir="..">
+	
+	<description>
+		Builds Java Proto stubs from *.proto files.
+		
+		To be able to build stubs you should have 'protoc' installed
+		(see http://code.google.com/p/protobuf/ for details).
+		To tell the buildfile where your 'protoc' is, just make it 
+		available via system path or define property 'protoc.path' in 
+		your personal 'build.properties' file.
+	</description>
+	
+	<!-- Important locations -->
+	<property name="build.dir" value="build" />
+	<property name="src.dir" value="src" />
+	
+	<property name="protos.dir" value="${src.dir}/protos" />
+	<property name="protos.output.dir" value="${src.dir}/ru/nsu/ccfit/pm/econ/net/protos" />
+	
+	<!-- Properties defined in these files will override properties in this file -->
+	<property file="${user.home}/build.properties" />
+	<property file="${build.dir}/build.properties" />
+	
+	<property name="protoc.path" value="protoc" />
+	
+	<!-- Target section -->
+	<target name="-mesg-protoc-unavailable" if="protoc.unavailable">
+		<echo level="error">ERROR: Proto compiler is not available. Proto stubs will not be built, which may result in build failure.</echo>
+		<echo>Please check whether you have 'protoc' installed. See build_protos.xml for details.</echo>
+		<echo>For downloads please proceed to the project page: http://code.google.com/p/protobuf/</echo>
+	</target>
+	
+	<target name="-init" description="Check whether build environment is OK">
+		<echo message="Using protoc.path=${protoc.path}" />
+		
+		<exec executable="${protoc.path}" failifexecutionfails="no" outputproperty="protoc.version">
+			<arg value="--version" />
+		</exec>
+		<condition property="protoc.unavailable">
+			<not>
+				<isset property="protoc.version" />
+			</not>
+		</condition>
+		
+		<antcall target="-mesg-protoc-unavailable" />
+	</target>
+	
+	<target name="clean" description="Delete generated proto sources">
+		<delete dir="${protos.output.dir}" />
+	</target>
+	
+	<target name="all" description="Build HappyPiggy Proto sources" 
+			depends="-init" unless="protoc.unavailable">
+		<apply executable="${protoc.path}">
+			<arg value="--java_out=${src.dir}/" />
+			<arg value="--proto_path=${basedir}/${protos.dir}" />
+			<fileset dir="${protos.dir}" includes="*.proto" />
+		</apply>
+	</target>
+	
+</project>

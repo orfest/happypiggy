@@ -1,0 +1,139 @@
+<shared:CompanyInfoScreen wtkx:id="companyInfoScreen" 
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:shared="ru.nsu.ccfit.pm.econ.view.shared"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<rows>
+	<GridPane.Row>
+		<TablePane styles="{verticalSpacing:12}">
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+				<TablePane.Row height="-1">
+					<BoxPane styles="{horizontalAlignment:'center', verticalAlignment:'center'}">
+					
+						<Label text="Компания:" />
+						<ListButton wtkx:id="companyLB" 
+							listData="['Рога и копыта', 'Баба Яга и Ко.', 'Копытца и хвостики']"
+							selectedIndex="1" 
+						/>
+						
+					</BoxPane>
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					<GridPane columnCount="2" styles="{horizontalSpacing:16}">
+						<rows>
+							<GridPane.Row>
+								<TablePane styles="{verticalSpacing:4}">
+									<columns>
+										<TablePane.Column width="1*" />
+									</columns>
+									<rows>
+										<TablePane.Row height="-1">
+											
+											<Form>
+												<sections>
+													<Form.Section>
+														<Label wtkx:id="typeLabel" Form.label="Тип" text="авиакомпания" />
+													</Form.Section>
+												</sections>
+											</Form>
+											
+										</TablePane.Row>
+										<TablePane.Row height="-1">
+											
+											<BoxPane styles="{padding:{top:8}}">
+												<Label text="Описание:" />
+											</BoxPane>
+											
+										</TablePane.Row>
+										<TablePane.Row height="1*">
+											
+											<Border styles="{color:10}">
+												<content>
+													<ScrollPane 
+														horizontalScrollBarPolicy="fill" 
+														verticalScrollBarPolicy="fill_to_capacity"
+													>
+														<view>
+															<TextArea wtkx:id="descriptionTA" text="Очень длинное описание компании" editable="false" />
+														</view>
+													</ScrollPane>
+												</content>
+											</Border>
+											
+										</TablePane.Row>
+									</rows>
+								</TablePane>
+								<TablePane styles="{verticalSpacing:4}">
+									<columns>
+										<TablePane.Column width="1*" />
+									</columns>
+									<rows>
+										<TablePane.Row height="-1">
+											
+											<Form>
+												<sections>
+													<Form.Section>
+														<Label wtkx:id="accountingPeriodLabel" Form.label="Расчетный период, ходов" text="2" />
+														<Label wtkx:id="totalSharesLabel" Form.label="Акций на рынке" text="50" />
+														<Label wtkx:id="marketValueLabel" Form.label="Рыночная стоимость акции" text="5" />
+														<Label wtkx:id="totalMarketValueLabel" Form.label="Стоимость всех акций" text="250" />
+													</Form.Section>
+												</sections>
+											</Form>
+											
+										</TablePane.Row>
+										<TablePane.Row height="-1">
+											
+											<BoxPane styles="{padding:{top:8}}">
+												<Label text="Прибыль и дивиденды:" />
+											</BoxPane>
+											
+										</TablePane.Row>
+										<TablePane.Row height="1*">
+											
+											<Border styles="{color:10}">
+												<content>
+													<ScrollPane 
+														horizontalScrollBarPolicy="fill" 
+														verticalScrollBarPolicy="fill_to_capacity"
+													>
+														<view>
+															<TableView wtkx:id="incomeTable">
+																<columns>
+																	<TableView.Column name="turn" headerData="Ход" width="30" />
+																	<TableView.Column name="income" headerData="Прибыль" width="80" />
+																	<TableView.Column name="ratio" headerData="%% выплат" width="80" />
+																	<TableView.Column name="payout" headerData="Выплата на акцию" width="1*" />
+																</columns>
+																<tableData xmlns="org.apache.pivot.collections">
+																	<ArrayList>
+																		<HashMap turn="2" income="2000" ratio="90" payout="36" />
+																		<HashMap turn="4" income="500" ratio="10" payout="1" />
+																	</ArrayList>
+																</tableData>
+															</TableView>
+														</view>
+														<columnHeader>
+															<TableViewHeader tableView="$incomeTable" />
+														</columnHeader>
+													</ScrollPane>
+												</content>
+											</Border>
+											
+										</TablePane.Row>
+									</rows>
+								</TablePane>
+							</GridPane.Row>
+						</rows>
+					</GridPane>
+				</TablePane.Row>
+			</rows>
+		</TablePane>
+	</GridPane.Row>
+	</rows>
+</shared:CompanyInfoScreen>

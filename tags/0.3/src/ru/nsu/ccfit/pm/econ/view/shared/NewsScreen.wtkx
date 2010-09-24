@@ -1,0 +1,77 @@
+<shared:NewsScreen wtkx:id="newsScreen" 
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:shared="ru.nsu.ccfit.pm.econ.view.shared"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<rows>
+	<GridPane.Row>
+		<TablePane styles="{verticalSpacing:4}">
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+			
+				<TablePane.Row height="-1">
+					<Label wtkx:id="summaryLabel" text="Новости. Всего: 100500. Непрочитанных: не меньше." />
+				</TablePane.Row>
+				
+				<TablePane.Row height="1*">
+					<Border styles="{color:10}">
+						<content>
+							<ScrollPane 
+								horizontalScrollBarPolicy="fill" 
+								verticalScrollBarPolicy="fill_to_capacity"
+							>
+								<view>
+									<TableView wtkx:id="newsTable">
+										<columns>
+											<TableView.Column name="time" headerData="Время" width="60" />
+											<TableView.Column name="type" headerData="Тип сообщения" width="100" />
+											<TableView.Column name="new" headerData="Новое" width="20" />
+											<TableView.Column name="header" headerData="Заголовок" width="1*" />
+										</columns>
+										<tableData xmlns="org.apache.pivot.collections">
+											<ArrayList>
+												<HashMap time="[1] 4.24" type="Слух" new="*" header="Ктулху зохавал мозг директора агрокорпорации?" />
+												<HashMap time="[1] 3.45" type="Новость" new=" " header="Агрокорпорация увеличила производство Г..." />
+											</ArrayList>
+										</tableData>
+									</TableView>
+								</view>
+								
+								<columnHeader>
+									<TableViewHeader tableView="$newsTable" />
+								</columnHeader>
+							</ScrollPane>
+						</content>
+					</Border>
+				</TablePane.Row>
+				
+				<TablePane.Row height="-1">
+					<BoxPane styles="{horizontalAlignment:'right'}">
+						<PushButton wtkx:id="nextPB" buttonData="Следующее непрочитанное" />
+					</BoxPane>
+				</TablePane.Row>
+				
+				<TablePane.Row height="1*">
+					<Border styles="{color:10}">
+						<content>
+							<ScrollPane
+								horizontalScrollBarPolicy="fill" 
+								verticalScrollBarPolicy="fill_to_capacity"
+							>
+								<view>
+									<TextArea wtkx:id="descriptionTA" editable="false" text="Бла-бла-бла"/>
+								</view>
+							</ScrollPane>
+						</content>
+					</Border>
+				</TablePane.Row>
+				
+			</rows>
+		</TablePane>
+	</GridPane.Row>
+	</rows>
+</shared:NewsScreen>

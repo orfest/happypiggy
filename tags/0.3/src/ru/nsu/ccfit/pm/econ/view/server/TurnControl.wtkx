@@ -1,0 +1,9 @@
+<server:TurnControl wtkx:id="turnControl" styles="{verticalAlignment:'center'}"
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:server="ru.nsu.ccfit.pm.econ.view.server"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<PushButton wtkx:id="turnPB" buttonData="Остановить ход" preferredHeight="40" enabled="false" />
+</server:TurnControl>

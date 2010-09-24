@@ -1,0 +1,94 @@
+/*
+ * Localization file for both client and server of Happy Piggy.
+ * Default locale (English).
+ */
+{
+	alphabet:	"abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ",
+	
+	c: {	// Client-specific resources
+		windowTitle: "Happy Piggy - Client",
+		
+		login: {
+			welcome: 		"Welcome to Happy Piggy - an educational program that would let you experience yourself as commercial agent and investor on a toy stock exchange",
+			name:			"Name",
+			namePrompt:		"Your first and last name",
+			group:			"Group",
+			groupPrompt:	"Your group",
+			serverFromList:	"I wanna select server from list",
+			serverManually:	"I wanna enter server address manually",
+			serverAddress:	"Server address",
+			ipAddress:		"IP address",
+			port:			"Port",
+			connect:		"Connect",
+			selectServer:	"Select server",
+			introduce:		"Introduce yourself",
+			searching:		"Searching for servers...",
+			connecting:		"Connecting to server...",
+			waitingPlayers:	"Waiting for other players...",
+			disconnect:		"Disconnect",
+			requiresName:	"Name is required",
+			requiresServer:	"Server address is required",
+			requiresValidServer:	"Valid server address is required",
+			disconnected:	"You've been disconnected from the server. Try again or connect to another server."
+		},
+	},
+	
+	s: {	// Server-specific resources
+		windowTitle: "Happy Piggy - Server",
+		
+		start: {
+			name:			"Name",
+			namePrompt:		"Your first and last name",
+			openScenario:	"Open",
+			startServer:	"Start server",
+			startGame:		"Start game",
+			
+			scenario: {
+				status: {
+					OK:							"Scenario file loaded OK",
+					FILE_NOT_FOUND:				"Specified scenario file not found",
+					ACCESS_DENIED:				"Access to scenario file is denied",
+					INVALID_FILE_VERSION:		"Incompatible scenario file format",
+					INVALID_FILE_FORMAT:		"Invalid scenario file format",
+					INVALID_STATE:				"Scenario file already loaded",
+					GENERIC_FAILURE:			"Unknown error during scenario file load"
+				},
+			},
+			
+			server: {
+				status: {
+					OK:							"Server started normally",
+					OK_NO_AUTOLOCATE:			"Server started successfully, but server autolocate support is not available. You will need to tell players server address.",
+					CANNOT_BIND:				"Server start failed: address already in use",
+					ACCESS_DENIED:				"Server cannot be started due to security restrictions",
+					INVALID_STATE:				"Server cannot be started: invalid system state"
+				},
+			},
+		},
+		
+		game: {	// In-game text
+			endTurn:		"End turn",
+			beginTurn:		"Begin turn",
+		},
+		
+	},
+	
+	// Shared resources
+	format: {	// default formatting strings
+		turn:		"Turn %d",					// turnNumber
+		currency:	"%.2f $",					// moneyAmount
+		shares:		"%d shares",				// sharesAmount
+		sharesWithCost:	"%s for %s",			// sharesString, moneyString
+		newsSummary: "News. Total: %d. Unread: %d.",  // all news, unread news
+		newsOfficial: "News",
+		newsRumor:    "Rumor",
+		newsTitle: "%s",						// title 
+		newsEffect: "%c%s %.2f%%",				// sign, moneyFormatted, percentEffect
+	},
+	
+	roles: {
+		student:	"Shareholder",
+		teacher:	"Teacher",
+		unknown:	"Player",
+	},
+}
