@@ -1,0 +1,179 @@
+<server:PublishScreen wtkx:id="publishScreen" 
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:server="ru.nsu.ccfit.pm.econ.view.server"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<rows>
+	<GridPane.Row>
+		<TablePane styles="{verticalSpacing:4}">
+			<columns>
+				<TablePane.Column width="1*" />
+			</columns>
+			<rows>
+				<TablePane.Row height="1*">
+					<TablePane styles="{horizontalSpacing:4}">
+						<columns>
+							<TablePane.Column width="1*" />
+							<TablePane.Column width="2*" />
+						</columns>
+						<rows>
+							<TablePane.Row height="-1">
+								
+								<Label text="Компании:" styles="{font:{bold:true}}" />
+								
+								<Label text="Еще не опубликованные сообщения:" styles="{font:{bold:true}}" />
+								
+							</TablePane.Row>
+							<TablePane.Row height="1*">
+								
+								<Border styles="{color:10}">
+									<content>
+										<ScrollPane 
+											horizontalScrollBarPolicy="fill_to_capacity" 
+											verticalScrollBarPolicy="fill_to_capacity"
+										>
+											<view>
+												<ListView wtkx:id="companyList" 
+													listData="['Копытца и хвостики, агрокорпорация', 'Рога и копыта, банк']" 
+												/>
+											</view>
+										</ScrollPane>
+									</content>
+								</Border>
+								
+								<Border styles="{color:10}">
+									<content>
+										<ScrollPane 
+											horizontalScrollBarPolicy="fill_to_capacity" 
+											verticalScrollBarPolicy="fill_to_capacity"
+										>
+											<view>
+												<ListView wtkx:id="newsList" 
+													listData="['Закуплены новые семена...', 'Засуха', 'Новая программа поддержки с/х...', 'Коровий грипп...']" 
+												/>
+											</view>
+										</ScrollPane>
+									</content>
+								</Border>
+								
+							</TablePane.Row>
+						</rows>
+					</TablePane>
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					<TablePane styles="{horizontalSpacing:4, padding:{top:8}}">
+						<columns>
+							<TablePane.Column width="2*" />
+							<TablePane.Column width="1*" />
+						</columns>
+						<rows>
+							<TablePane.Row height="1*">
+								
+								<TablePane styles="{verticalSpacing:4}">
+									<columns>
+										<TablePane.Column width="1*" />
+									</columns>
+									<rows>
+										<TablePane.Row height="-1">
+											
+											<BoxPane orientation="horizontal">
+												<CardPane wtkx:id="messageTypeCP" selectedIndex="1">
+													<Label text="Новость:" />
+													<Label text="Слух:" />
+												</CardPane>
+												<Label wtkx:id="titleLabel" text="Коровий грипп" styles="{font:{bold:true}}" />
+											</BoxPane>
+											
+										</TablePane.Row>
+										<TablePane.Row height="1*">
+											
+											<Border styles="{color:10}">
+												<content>
+													<ScrollPane 
+														horizontalScrollBarPolicy="fill" 
+														verticalScrollBarPolicy="fill_to_capacity"
+													>
+														<view>
+															<TextArea wtkx:id="descriptionTA" text="Sample description" editable="false" />
+														</view>
+													</ScrollPane>
+												</content>
+											</Border>
+											
+										</TablePane.Row>
+										<TablePane.Row height="-1">
+											
+											<BoxPane>
+												<Label text="Влияние на прибыль:" />
+												<Label wtkx:id="effectLabel" text="+0 руб. -30%" />
+											</BoxPane>
+											
+										</TablePane.Row>
+									</rows>
+								</TablePane>
+								
+								<TablePane styles="{verticalSpacing:4}">
+									<columns>
+										<TablePane.Column width="1*" />
+									</columns>
+									<rows>
+										<TablePane.Row height="-1">
+											
+											<Label text="Адресаты:" />
+											
+										</TablePane.Row>
+										<TablePane.Row height="1*">
+											
+											<Border styles="{color:10}">
+												<content>
+													<ScrollPane 
+														horizontalScrollBarPolicy="fill_to_capacity" 
+														verticalScrollBarPolicy="fill_to_capacity"
+													>
+														<view>
+															<ListView wtkx:id="recipientCheckList" selectMode="single" checkmarksEnabled="true" 
+																listData="['Иван', 'Вовочка', 'Петя']" 
+															/>
+														</view>
+													</ScrollPane>
+												</content>
+											</Border>
+											
+										</TablePane.Row>
+										<TablePane.Row height="-1">
+											
+											<BoxPane orientation="horizontal">
+												<PushButton wtkx:id="selectAllPB" buttonData="Выделить всех" />
+												<PushButton wtkx:id="selectNonePB" buttonData="Снять выделение" />
+											</BoxPane>
+											
+										</TablePane.Row>
+										<TablePane.Row height="-1">
+											
+											<BoxPane>
+												<Label text="Всего выбрано адресатов:" />
+												<Label wtkx:id="numRecipientsLabel" text="0" />
+											</BoxPane>
+											
+										</TablePane.Row>
+									</rows>
+								</TablePane>
+								
+							</TablePane.Row>
+						</rows>
+					</TablePane>
+				</TablePane.Row>
+				<TablePane.Row height="-1">
+					
+					<BoxPane styles="{horizontalAlignment:'center'}">
+						<PushButton wtkx:id="publishPB" buttonData="Опубликовать!" />
+					</BoxPane>
+					
+				</TablePane.Row>
+			</rows>
+		</TablePane>
+	</GridPane.Row>
+	</rows>
+</server:PublishScreen>

@@ -1,0 +1,16 @@
+<shared:CompanyInfoForm wtkx:id="companyInfoForm" 
+	xmlns:wtkx="http://pivot.apache.org/wtkx"
+	xmlns="org.apache.pivot.wtk"
+	xmlns:shared="ru.nsu.ccfit.pm.econ.view.shared"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+	<sections>
+		<Form.Section>
+			<Label wtkx:id="companyNameLabel" Form.label="Название компании" text="Копытца и хвостики" />
+			<Label wtkx:id="companyTypeLabel" Form.label="Тип компании" text="агрокорпорация" />
+			<Label wtkx:id="totalSharesLabel" Form.label="Акций на рынке" text="50" />
+			<Label wtkx:id="marketValueLabel" Form.label="Рыночная стоимость акции" text="11 руб." />
+			<Label wtkx:id="mineSharesLabel" Form.label="Акций компании у меня" text="10" />
+		</Form.Section>
+	</sections>
+</shared:CompanyInfoForm>

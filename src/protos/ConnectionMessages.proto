@@ -1,0 +1,20 @@
+package protos;
+
+option java_package =  "ru.nsu.ccfit.pm.econ.net.protos";
+option java_outer_classname = "ConnectionMessagesProtos";
+
+message PersonDescriptionProto {
+  required string name = 1;
+  optional string group = 2;
+}
+
+message ConnectionResponseProto {
+  required bool isConnectionAccepted = 1;
+  optional string reason = 2;
+}
+
+message BroadcastMessageProto {
+	required int32 port = 1;
+	required string gameSessionName = 2;
+	required string hostname = 3;
+}

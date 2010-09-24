@@ -1,0 +1,96 @@
+/*
+ * Localization file for both client and server of Happy Piggy.
+ * Russian locale.
+ *
+ * Note: this file should be synchronized with Localization.json, 
+ * otherwise you'll end up with partially localized software!
+ */
+{
+	alphabet: "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ",
+	
+	c: {	// Client-specific resources
+		windowTitle: "Happy Piggy - Клиент",
+		
+		login: {
+			welcome: 		"Добро пожаловать в HappyPiggy - обучающую программу, позволяющую Вам выступить в качестве брокера и инвестора на 'игрушечной' бирже.",
+			name:			"Имя",
+			namePrompt:		"Ваши имя и фамилия",
+			group:			"Группа",
+			groupPrompt:	"Ваша группа",
+			serverFromList:	"Я хочу выбрать сервер из списка",
+			serverManually:	"Я хочу ввести адрес сервера вручную",
+			serverAddress:	"Адрес сервера",
+			ipAddress:		"IP адрес",
+			port:			"Порт",
+			connect:		"Соединиться",
+			selectServer:	"Выберите игровой сервер",
+			introduce:		"Пожалуйста, представьтесь",
+			searching:		"Поиск игровых серверов...",
+			connecting:		"Соединение с сервером...",
+			waitingPlayers:	"Ожидание других игроков...",
+			disconnect:		"Отсоединиться",
+			requiresName:	"Требуется указать имя",
+			requiresServer:	"Требуется указать адрес сервера",
+			requiresValidServer:	"Требуется указать корректный адрес сервера",
+			disconnected:	"Вы были отсоединены от сервера. Попробуйте присоединиться снова к этому либо другому серверу."
+		},
+	},
+	
+	s: {	// Server-specific resources
+		windowTitle: "Happy Piggy - Сервер",
+		
+		start: {
+			name:			"Имя",
+			namePrompt:		"Ваши имя и фамилия",
+			openScenario:	"Открыть",
+			startServer:	"Запустить сервер",
+			startGame:		"Запустить игру",
+			
+			scenario: {
+				status: {
+					OK:							"Файл сценария успешно загружен",
+					FILE_NOT_FOUND:				"Указанный файл сценария не найден",
+					ACCESS_DENIED:				"Нет доступа к файлу сценария",
+					INVALID_FILE_VERSION:		"Несовместимый формат файла сценария",
+					INVALID_FILE_FORMAT:		"Неверный формат файла сценария",
+					INVALID_STATE:				"Файл сценария уже загружен",
+					GENERIC_FAILURE:			"Неизвестная ошибка при загрузке сценария"
+				},
+			},
+			
+			server: {
+				status: {
+					OK:							"Сервер успешно запущен",
+					OK_NO_AUTOLOCATE:			"Сервер запущен успешно, но автоматическое определение адреса невозможно. Вам будет необходимо сообщить адрес сервера учащимся.",
+					CANNOT_BIND:				"Запуск сервера невозможен, адрес уже используется",
+					ACCESS_DENIED:				"Сервер не может быть запущен из-за ограничений безопасности",
+					INVALID_STATE:				"Сервер не может быть запущен, неверное состояние системы"
+				},
+			},
+		},
+		game: {	// In-game text
+			endTurn:		"Завершить ход!",
+			beginTurn:		"Начать ход!",
+		},
+		
+	},
+	
+	// Shared resources
+	format: {	// default formatting strings
+		turn:		"Ход %d",					// turnNumber
+		currency:	"%.2f $",					// moneyAmount
+		shares:		"%d акций",					// sharesAmount
+		sharesWithCost:	"%s за %s",				// sharesString, moneyString
+		newsSummary: "Новости. Всего: %d. Непрочитанных: %d.",  // all news, unread news
+		newsOfficial: "Новости",
+		newsRumor:    "Слух",
+		newsTitle: "%s",						// title 
+		newsEffect: "%c%s %.2f%%",				// sign, moneyFormatted, percentEffect
+	},
+	
+	roles: {
+		student:	"Акционер",
+		teacher:	"Преподаватель",
+		unknown:	"Игрок",
+	},
+}
