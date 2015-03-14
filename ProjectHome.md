@@ -1,0 +1,1 @@
+Happy Piggy is an economic simulation game. It helps students to feel how stock works.
